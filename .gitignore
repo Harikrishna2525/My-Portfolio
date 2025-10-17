@@ -43,3 +43,13 @@ app.*.map.json
 /android/app/debug
 /android/app/profile
 /android/app/release
+
+# Firebase
+.firebase/
+*-debug.log
+.runtimeconfig.json
+firebase-debug*.log
+
+# Service Account Keys (NEVER COMMIT THESE!)
+*serviceAccountKey.json
+*service-account*.json

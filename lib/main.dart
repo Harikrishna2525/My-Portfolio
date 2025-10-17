@@ -254,13 +254,25 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
       padding: const EdgeInsets.symmetric(vertical: 60),
       child: Column(
         children: [
-          Text(
-            'Technologies & Tools',
-            style: GoogleFonts.poppins(
-              fontSize: isMobile ? 28 : 36,
-              fontWeight: FontWeight.bold,
-              color: const Color(0xFF1E88E5),
-            ),
+          TweenAnimationBuilder<double>(
+            tween: Tween(begin: 0.0, end: 1.0),
+            duration: const Duration(milliseconds: 600),
+            builder: (context, value, child) {
+              return Opacity(
+                opacity: value,
+                child: Transform.translate(
+                  offset: Offset(0, 20 * (1 - value)),
+                  child: Text(
+                    'Technologies & Tools',
+                    style: GoogleFonts.poppins(
+                      fontSize: isMobile ? 28 : 36,
+                      fontWeight: FontWeight.bold,
+                      color: const Color(0xFF1E88E5),
+                    ),
+                  ),
+                ),
+              );
+            },
           ),
           const SizedBox(height: 48),
           CarouselSlider(
@@ -276,41 +288,55 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
             items: skills.map((skill) {
               return Builder(
                 builder: (BuildContext context) {
-                  return Container(
-                    width: 250,
-                    margin: const EdgeInsets.symmetric(horizontal: 12),
-                    padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 24),
-                    decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(20),
-                      boxShadow: [
-                        BoxShadow(
-                          color: Colors.black.withOpacity(0.1),
-                          blurRadius: 20,
-                          offset: const Offset(0, 10),
-                        ),
-                      ],
-                    ),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Icon(
-                          skill['icon'] as IconData,
-                          size: 64,
-                          color: skill['color'] as Color,
-                        ),
-                        const SizedBox(height: 12),
-                        Text(
-                          skill['name'] as String,
-                          textAlign: TextAlign.center,
-                          style: GoogleFonts.poppins(
-                            fontSize: 17,
-                            fontWeight: FontWeight.w600,
-                            color: Colors.black87,
+                  return TweenAnimationBuilder<double>(
+                    tween: Tween(begin: 0.8, end: 1.0),
+                    duration: const Duration(milliseconds: 500),
+                    curve: Curves.easeOut,
+                    builder: (context, scale, child) {
+                      return Transform.scale(
+                        scale: scale,
+                        child: Container(
+                          width: 250,
+                          margin: const EdgeInsets.symmetric(horizontal: 12),
+                          padding: const EdgeInsets.all(16),
+                          decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(20),
+                            boxShadow: [
+                              BoxShadow(
+                                color: Colors.black.withOpacity(0.1),
+                                blurRadius: 20,
+                                offset: const Offset(0, 10),
+                              ),
+                            ],
+                          ),
+                          child: FittedBox(
+                            fit: BoxFit.scaleDown,
+                            child: Column(
+                              mainAxisSize: MainAxisSize.min,
+                              mainAxisAlignment: MainAxisAlignment.center,
+                              children: [
+                                Icon(
+                                  skill['icon'] as IconData,
+                                  size: 64,
+                                  color: skill['color'] as Color,
+                                ),
+                                const SizedBox(height: 12),
+                                Text(
+                                  skill['name'] as String,
+                                  textAlign: TextAlign.center,
+                                  style: GoogleFonts.poppins(
+                                    fontSize: 17,
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black87,
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         ),
-                      ],
-                    ),
+                      );
+                    },
                   );
                 },
               );
@@ -332,13 +358,25 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
       color: const Color(0xFFF5F5F5),
       child: Column(
         children: [
-          Text(
-            'Experience & Skills',
-            style: GoogleFonts.poppins(
-              fontSize: isMobile ? 28 : 36,
-              fontWeight: FontWeight.bold,
-              color: const Color(0xFF1E88E5),
-            ),
+          TweenAnimationBuilder<double>(
+            tween: Tween(begin: 0.0, end: 1.0),
+            duration: const Duration(milliseconds: 600),
+            builder: (context, value, child) {
+              return Opacity(
+                opacity: value,
+                child: Transform.translate(
+                  offset: Offset(0, 20 * (1 - value)),
+                  child: Text(
+                    'Experience & Skills',
+                    style: GoogleFonts.poppins(
+                      fontSize: isMobile ? 28 : 36,
+                      fontWeight: FontWeight.bold,
+                      color: const Color(0xFF1E88E5),
+                    ),
+                  ),
+                ),
+              );
+            },
           ),
           const SizedBox(height: 48),
           Wrap(
@@ -482,13 +520,25 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
       ),
       child: Column(
         children: [
-          Text(
-            'AWS Projects',
-            style: GoogleFonts.poppins(
-              fontSize: isMobile ? 28 : 36,
-              fontWeight: FontWeight.bold,
-              color: const Color(0xFF1E88E5),
-            ),
+          TweenAnimationBuilder<double>(
+            tween: Tween(begin: 0.0, end: 1.0),
+            duration: const Duration(milliseconds: 600),
+            builder: (context, value, child) {
+              return Opacity(
+                opacity: value,
+                child: Transform.translate(
+                  offset: Offset(0, 20 * (1 - value)),
+                  child: Text(
+                    'AWS Projects',
+                    style: GoogleFonts.poppins(
+                      fontSize: isMobile ? 28 : 36,
+                      fontWeight: FontWeight.bold,
+                      color: const Color(0xFF1E88E5),
+                    ),
+                  ),
+                ),
+              );
+            },
           ),
           const SizedBox(height: 48),
           _buildProjectCard(
@@ -690,48 +740,57 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
   }
 
   Widget _buildFooter(BuildContext context) {
-    return Container(
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(vertical: 40),
-      decoration: BoxDecoration(
-        gradient: LinearGradient(
-          begin: Alignment.topLeft,
-          end: Alignment.bottomRight,
-          colors: [
-            const Color(0xFF0D47A1),
-            const Color(0xFF1565C0),
-            const Color(0xFF1E88E5),
-          ],
-        ),
-      ),
-      child: Column(
-        children: [
-          Text(
-            'Get In Touch',
-            style: GoogleFonts.poppins(
-              fontSize: 28,
-              fontWeight: FontWeight.bold,
-              color: Colors.white,
+    return TweenAnimationBuilder<double>(
+      tween: Tween(begin: 0.0, end: 1.0),
+      duration: const Duration(milliseconds: 800),
+      builder: (context, value, child) {
+        return Opacity(
+          opacity: value,
+          child: Container(
+            width: double.infinity,
+            padding: const EdgeInsets.symmetric(vertical: 40),
+            decoration: BoxDecoration(
+              gradient: LinearGradient(
+                begin: Alignment.topLeft,
+                end: Alignment.bottomRight,
+                colors: [
+                  const Color(0xFF0D47A1),
+                  const Color(0xFF1565C0),
+                  const Color(0xFF1E88E5),
+                ],
+              ),
+            ),
+            child: Column(
+              children: [
+                Text(
+                  'Get In Touch',
+                  style: GoogleFonts.poppins(
+                    fontSize: 28,
+                    fontWeight: FontWeight.bold,
+                    color: Colors.white,
+                  ),
+                ),
+                const SizedBox(height: 24),
+                Text(
+                  'Open to AWS Cloud Engineering opportunities',
+                  style: GoogleFonts.poppins(
+                    fontSize: 16,
+                    color: Colors.white70,
+                  ),
+                ),
+                const SizedBox(height: 32),
+                Text(
+                  '© 2025 Hari Krishna R. All rights reserved.',
+                  style: GoogleFonts.poppins(
+                    fontSize: 14,
+                    color: Colors.white60,
+                  ),
+                ),
+              ],
             ),
           ),
-          const SizedBox(height: 24),
-          Text(
-            'Open to AWS Cloud Engineering opportunities',
-            style: GoogleFonts.poppins(
-              fontSize: 16,
-              color: Colors.white70,
-            ),
-          ),
-          const SizedBox(height: 32),
-          Text(
-            '© 2025 Hari Krishna R. All rights reserved.',
-            style: GoogleFonts.poppins(
-              fontSize: 14,
-              color: Colors.white60,
-            ),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 }

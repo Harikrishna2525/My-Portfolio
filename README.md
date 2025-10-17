@@ -91,12 +91,28 @@ flutter build web
 
 ### Deploy to Web
 
+#### Manual Deployment
+
 ```bash
 # Build the web version
 flutter build web --release
 
-# Deploy the build/web folder to your hosting service
+# Deploy to Firebase Hosting
+firebase deploy --only hosting
 ```
+
+#### Automated CI/CD Deployment
+
+This project uses **GitHub Actions** for automatic deployment to Firebase Hosting.
+
+✅ **Every push to `main` or `master` branch automatically deploys!**
+
+**Setup CI/CD:**
+1. Follow instructions in [`CI_CD_SETUP.md`](./CI_CD_SETUP.md)
+2. Add `FIREBASE_TOKEN` secret to GitHub repository
+3. Push code and watch it auto-deploy! 🚀
+
+**Live Site:** https://harikrish-portfolio.web.app
 
 ## 🎨 Features
 
@@ -106,7 +122,9 @@ flutter build web --release
 ✅ **Auto-Playing Carousel**: Technology showcase with AWS services  
 ✅ **SEO Optimized**: Proper meta tags and Open Graph integration  
 ✅ **Blue Theme**: Professional AWS-inspired color scheme  
-✅ **Live Project Links**: Direct links to deployed AWS projects
+✅ **Live Project Links**: Direct links to deployed AWS projects  
+✅ **CI/CD Pipeline**: Automated deployment with GitHub Actions  
+✅ **Firebase Hosting**: Fast, secure global CDN hosting
 
 ## 📧 Contact
 

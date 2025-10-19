@@ -263,7 +263,10 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
       {'name': 'Lambda', 'icon': FontAwesomeIcons.bolt, 'color': const Color(0xFFFF9900)},
       {'name': 'API Gateway', 'icon': Icons.api, 'color': const Color(0xFF1E88E5)},
       {'name': 'DynamoDB', 'icon': Icons.storage, 'color': const Color(0xFF2053B4)},
+      {'name': 'CloudFront (CDN)', 'icon': Icons.cloud_sync, 'color': const Color(0xFFFF9900)},
       {'name': 'Windows', 'icon': FontAwesomeIcons.windows, 'color': const Color(0xFF0078D4)},
+      {'name': 'Ubuntu', 'icon': FontAwesomeIcons.ubuntu, 'color': const Color(0xFFE95420)},
+      {'name': 'Linux', 'icon': FontAwesomeIcons.linux, 'color': const Color(0xFFFCC624)},
       {'name': 'Nginx', 'icon': FontAwesomeIcons.server, 'color': const Color(0xFF009639)},
       {'name': 'DuckDNS', 'icon': Icons.dns, 'color': const Color(0xFF1E88E5)},
     ];

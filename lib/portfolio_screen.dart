@@ -185,13 +185,15 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
                         size: 28,
                       ),
                       const SizedBox(width: 12),
-                      Text(
-                        'AWS CLOUD ENGINEER',
-                        style: GoogleFonts.poppins(
-                          fontSize: isMobile ? 18 : 26,
-                          fontWeight: FontWeight.bold,
-                          color: Colors.white,
-                          letterSpacing: 1.2,
+                      Flexible(
+                        child: Text(
+                          'AWS CLOUD ENGINEER',
+                          style: GoogleFonts.poppins(
+                            fontSize: isMobile ? 16 : 26,
+                            fontWeight: FontWeight.bold,
+                            color: Colors.white,
+                            letterSpacing: 1.2,
+                          ),
                         ),
                       ),
                     ],
@@ -264,6 +266,7 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
       {'name': 'API Gateway', 'icon': Icons.api, 'color': const Color(0xFF1E88E5)},
       {'name': 'DynamoDB', 'icon': Icons.storage, 'color': const Color(0xFF2053B4)},
       {'name': 'CloudFront (CDN)', 'icon': Icons.cloud_sync, 'color': const Color(0xFFFF9900)},
+      {'name': 'CloudFormation', 'icon': Icons.layers, 'color': const Color(0xFFFF9900)},
       {'name': 'Windows', 'icon': FontAwesomeIcons.windows, 'color': const Color(0xFF0078D4)},
       {'name': 'Ubuntu', 'icon': FontAwesomeIcons.ubuntu, 'color': const Color(0xFFE95420)},
       {'name': 'Linux', 'icon': FontAwesomeIcons.linux, 'color': const Color(0xFFFCC624)},

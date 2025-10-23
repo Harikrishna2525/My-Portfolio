@@ -267,7 +267,6 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
       {'name': 'DynamoDB', 'icon': Icons.storage, 'color': const Color(0xFF2053B4)},
       {'name': 'CloudFront (CDN)', 'icon': Icons.cloud_sync, 'color': const Color(0xFFFF9900)},
       {'name': 'CloudFormation', 'icon': Icons.layers, 'color': const Color(0xFFFF9900)},
-      {'name': 'Amplify', 'icon': Icons.amp_stories, 'color': const Color(0xFFFF9900)},
       {'name': 'Windows', 'icon': FontAwesomeIcons.windows, 'color': const Color(0xFF0078D4)},
       {'name': 'Ubuntu', 'icon': FontAwesomeIcons.ubuntu, 'color': const Color(0xFFE95420)},
       {'name': 'Linux', 'icon': FontAwesomeIcons.linux, 'color': const Color(0xFFFCC624)},
@@ -420,7 +419,7 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
               _buildExperienceCard(
                 'AWS Cloud',
                 'Proficient',
-                'EC2, S3, Lambda, DynamoDB, Cloud Watch, CloudFront CDN, CloudFormation, Amplify',
+                'EC2, S3, Lambda, DynamoDB, Cloud Watch, CloudFront CDN, CloudFormation',
                 Icons.cloud_queue,
                 const Color(0xFFFF9900),
                 isMobile,

@@ -267,6 +267,13 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
       {'name': 'DynamoDB', 'icon': Icons.storage, 'color': const Color(0xFF2053B4)},
       {'name': 'CloudFront (CDN)', 'icon': Icons.cloud_sync, 'color': const Color(0xFFFF9900)},
       {'name': 'CloudFormation', 'icon': Icons.layers, 'color': const Color(0xFFFF9900)},
+      {'name': 'Load Balancer', 'icon': Icons.balance, 'color': const Color(0xFF42A5F5)},
+      {'name': 'Auto Scaling', 'icon': Icons.trending_up, 'color': const Color(0xFF66BB6A)},
+      {'name': 'Target Group', 'icon': Icons.group_work, 'color': const Color(0xFFAB47BC)},
+      {'name': 'VPC', 'icon': Icons.settings_ethernet, 'color': const Color(0xFF1565C0)},
+      {'name': 'Subnets', 'icon': Icons.device_hub, 'color': const Color(0xFF26A69A)},
+      {'name': 'Route Tables', 'icon': Icons.alt_route, 'color': const Color(0xFFD4AF37)},
+      {'name': 'IGW', 'icon': Icons.router, 'color': const Color(0xFFEF6C00)},
       {'name': 'Windows', 'icon': FontAwesomeIcons.windows, 'color': const Color(0xFF0078D4)},
       {'name': 'Ubuntu', 'icon': FontAwesomeIcons.ubuntu, 'color': const Color(0xFFE95420)},
       {'name': 'Linux', 'icon': FontAwesomeIcons.linux, 'color': const Color(0xFFFCC624)},
@@ -867,7 +874,7 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
                 ),
                 const SizedBox(height: 32),
                 Text(
-                  '© 2025 Hari Krishna R. All rights reserved.',
+                  ' 2025 Hari Krishna R. All rights reserved.',
                   style: GoogleFonts.poppins(
                     fontSize: 14,
                     color: Colors.white60,

@@ -281,6 +281,7 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
       {'name': 'DuckDNS', 'icon': Icons.dns, 'color': const Color(0xFF1E88E5)},
       {'name': 'Git', 'icon': FontAwesomeIcons.git, 'color': const Color(0xFFF05032)},
       {'name': 'GitHub', 'icon': FontAwesomeIcons.github, 'color': const Color(0xFF181717)},
+      {'name': 'Docker', 'icon': null, 'asset': 'assets/docker.png'},
     ];
 
     return Container(
@@ -349,11 +350,18 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
                               mainAxisSize: MainAxisSize.min,
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
-                                Icon(
-                                  skill['icon'] as IconData,
-                                  size: 64,
-                                  color: skill['color'] as Color,
-                                ),
+                                if (skill['icon'] != null)
+                                  Icon(
+                                    skill['icon'] as IconData,
+                                    size: 64,
+                                    color: skill['color'] as Color?,
+                                  )
+                                else if (skill['asset'] != null)
+                                  Image.asset(
+                                    skill['asset'] as String,
+                                    width: 64,
+                                    height: 64,
+                                  ),
                                 const SizedBox(height: 12),
                                 Text(
                                   skill['name'] as String,

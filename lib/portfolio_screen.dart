@@ -79,58 +79,58 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
       child: Column(
         crossAxisAlignment: CrossAxisAlignment.center,
         children: [
-      TweenAnimationBuilder<double>(
-      tween: Tween(begin: 0.0, end: 1.0),
-      duration: const Duration(milliseconds: 1000),
-      builder: (context, value, child) {
-        return Transform.scale(
-          scale: value,
-          child: Container(
-            width: isMobile ? 120 : 160,
-            height: isMobile ? 120 : 160,
-            decoration: BoxDecoration(
-              shape: BoxShape.circle,
-              gradient: LinearGradient(
-                begin: Alignment.topLeft,
-                end: Alignment.bottomRight,
-                colors: [
-                  Colors.white,
-                  Colors.white.withOpacity(0.95),
-                ],
-              ),
-              boxShadow: [
-                BoxShadow(
-                  color: Colors.white.withOpacity(0.3),
-                  blurRadius: 30,
-                  spreadRadius: 5,
-                  offset: const Offset(0, 5),
-                ),
-              ],
-              border: Border.all(
-                color: Colors.white.withOpacity(0.5),
-                width: 3,
-              ),
-            ),
-            child: Center(
-              child: Text(
-                'HK',
-                style: GoogleFonts.poppins(
-                  fontSize: isMobile ? 48 : 64,
-                  fontWeight: FontWeight.bold,
-                  foreground: Paint()
-                    ..shader = LinearGradient(
+          TweenAnimationBuilder<double>(
+            tween: Tween(begin: 0.0, end: 1.0),
+            duration: const Duration(milliseconds: 1000),
+            builder: (context, value, child) {
+              return Transform.scale(
+                scale: value,
+                child: Container(
+                  width: isMobile ? 120 : 160,
+                  height: isMobile ? 120 : 160,
+                  decoration: BoxDecoration(
+                    shape: BoxShape.circle,
+                    gradient: LinearGradient(
+                      begin: Alignment.topLeft,
+                      end: Alignment.bottomRight,
                       colors: [
-                        const Color(0xFF1E88E5),
-                        const Color(0xFF0D47A1),
+                        Colors.white,
+                        Colors.white.withOpacity(0.95),
                       ],
-                    ).createShader(Rect.fromLTWH(0, 0, 200, 70)),
+                    ),
+                    boxShadow: [
+                      BoxShadow(
+                        color: Colors.white.withOpacity(0.3),
+                        blurRadius: 30,
+                        spreadRadius: 5,
+                        offset: const Offset(0, 5),
+                      ),
+                    ],
+                    border: Border.all(
+                      color: Colors.white.withOpacity(0.5),
+                      width: 3,
+                    ),
+                  ),
+                  child: Center(
+                    child: Text(
+                      'HK',
+                      style: GoogleFonts.poppins(
+                        fontSize: isMobile ? 48 : 64,
+                        fontWeight: FontWeight.bold,
+                        foreground: Paint()
+                          ..shader = LinearGradient(
+                            colors: [
+                              const Color(0xFF1E88E5),
+                              const Color(0xFF0D47A1),
+                            ],
+                          ).createShader(Rect.fromLTWH(0, 0, 200, 70)),
+                      ),
+                    ),
+                  ),
                 ),
-              ),
-            ),
+              );
+            },
           ),
-        );
-      },
-    ),
           const SizedBox(height: 32),
           TweenAnimationBuilder<double>(
             tween: Tween(begin: 0.0, end: 1.0),
@@ -187,9 +187,9 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
                       const SizedBox(width: 12),
                       Flexible(
                         child: Text(
-                          'AWS CLOUD ENGINEER',
+                          'CLOUD INFRASTRUCTURE ENGINEER',
                           style: GoogleFonts.poppins(
-                            fontSize: isMobile ? 16 : 26,
+                            fontSize: isMobile ? 14 : 24,
                             fontWeight: FontWeight.bold,
                             color: Colors.white,
                             letterSpacing: 1.2,
@@ -204,9 +204,10 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
           ),
           const SizedBox(height: 20),
           Text(
-            'Flutter Developer • 2 Years Experience',
+            'Cloud Infrastructure • AWS • Auto-Healing • Serverless',
+            textAlign: TextAlign.center,
             style: GoogleFonts.poppins(
-              fontSize: isMobile ? 16 : 20,
+              fontSize: isMobile ? 14 : 18,
               color: Colors.white70,
               fontWeight: FontWeight.w500,
             ),
@@ -229,14 +230,14 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
                     mainAxisSize: MainAxisSize.min,
                     children: [
                       const Icon(
-                        Icons.trending_up,
+                        Icons.architecture,
                         color: Colors.white,
                         size: 28,
                       ),
                       const SizedBox(width: 12),
                       Flexible(
                         child: Text(
-                          'Specializing in Cloud Infrastructure & Serverless Solutions',
+                          'Designing Resilient, Scalable & High-Availability Systems',
                           textAlign: TextAlign.center,
                           style: GoogleFonts.poppins(
                             fontSize: isMobile ? 14 : 18,
@@ -274,11 +275,12 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
       {'name': 'Subnets', 'icon': Icons.device_hub, 'color': const Color(0xFF26A69A)},
       {'name': 'Route Tables', 'icon': Icons.alt_route, 'color': const Color(0xFFD4AF37)},
       {'name': 'IGW', 'icon': Icons.router, 'color': const Color(0xFFEF6C00)},
+      {'name': 'CloudWatch', 'icon': Icons.monitor_heart, 'color': const Color(0xFFFF6F00)},
+      {'name': 'IAM', 'icon': Icons.security, 'color': const Color(0xFF7E57C2)},
       {'name': 'Windows', 'icon': FontAwesomeIcons.windows, 'color': const Color(0xFF0078D4)},
       {'name': 'Ubuntu', 'icon': FontAwesomeIcons.ubuntu, 'color': const Color(0xFFE95420)},
       {'name': 'Linux', 'icon': FontAwesomeIcons.linux, 'color': const Color(0xFFFCC624)},
       {'name': 'Nginx', 'icon': FontAwesomeIcons.server, 'color': const Color(0xFF009639)},
-      {'name': 'DuckDNS', 'icon': Icons.dns, 'color': const Color(0xFF1E88E5)},
       {'name': 'Git', 'icon': FontAwesomeIcons.git, 'color': const Color(0xFFF05032)},
       {'name': 'GitHub', 'icon': FontAwesomeIcons.github, 'color': const Color(0xFF181717)},
       {'name': 'Docker', 'icon': null, 'asset': 'assets/docker.png'},
@@ -408,7 +410,7 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
                 child: Transform.translate(
                   offset: Offset(0, 20 * (1 - value)),
                   child: Text(
-                    'Experience & Skills',
+                    'Core Competencies',
                     style: GoogleFonts.poppins(
                       fontSize: isMobile ? 28 : 36,
                       fontWeight: FontWeight.bold,
@@ -426,33 +428,33 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
             alignment: WrapAlignment.center,
             children: [
               _buildExperienceCard(
-                'Flutter Development',
-                '2 Years',
-                'Mobile & Web Applications',
-                Icons.flutter_dash,
-                const Color(0xFF02569B),
-                isMobile,
-              ),
-              _buildExperienceCard(
-                'AWS Cloud',
-                'Proficient',
-                'EC2, S3, Lambda, DynamoDB, Cloud Watch, CloudFront CDN, CloudFormation',
+                'Cloud Infrastructure',
+                'Production Systems',
+                'VPC, ALB, Auto Scaling, EC2, IAM, CloudWatch, CloudFormation (IaC)',
                 Icons.cloud_queue,
                 const Color(0xFFFF9900),
                 isMobile,
               ),
               _buildExperienceCard(
-                'Serverless Architecture',
-                'Expert',
-                'Lambda, API Gateway, DynamoDB',
-                FontAwesomeIcons.bolt,
+                'High Availability Design',
+                'Multi-AZ Architecture',
+                'Load Balancers, Health Checks, Auto-Healing, Fault Tolerance',
+                Icons.architecture,
                 const Color(0xFF1E88E5),
                 isMobile,
               ),
               _buildExperienceCard(
+                'Serverless Architecture',
+                'Hands-on Production',
+                'Lambda, API Gateway, DynamoDB, Event-Driven Systems',
+                FontAwesomeIcons.bolt,
+                const Color(0xFF7E57C2),
+                isMobile,
+              ),
+              _buildExperienceCard(
                 'Networking & Security',
-                'Advanced',
-                'VPC, Security Groups, IAM, CORS',
+                'Designed & Implemented',
+                'VPC, Security Groups, IAM Policies, CORS, Route Tables',
                 Icons.security,
                 const Color(0xFF4CAF50),
                 isMobile,
@@ -570,7 +572,7 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
                 child: Transform.translate(
                   offset: Offset(0, 20 * (1 - value)),
                   child: Text(
-                    'AWS Projects',
+                    'AWS Infrastructure Projects',
                     style: GoogleFonts.poppins(
                       fontSize: isMobile ? 28 : 36,
                       fontWeight: FontWeight.bold,
@@ -584,9 +586,50 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
           const SizedBox(height: 48),
           _buildProjectCard(
             context,
+            'Auto-Healing Web Infrastructure on AWS',
+            'Designed a highly available cloud infrastructure to eliminate single points of failure. '
+                'Built a custom VPC (10.0.0.0/16) with public subnets across multiple Availability Zones. '
+                'Application traffic is routed through an Application Load Balancer to EC2 instances '
+                'managed by an Auto Scaling Group. When an instance becomes unhealthy or is terminated, '
+                'the Auto Scaling Group automatically launches a replacement without manual intervention.',
+            [
+              'VPC',
+              'ALB',
+              'Auto Scaling',
+              'EC2',
+              'Health Checks',
+              'IAM',
+              'CloudWatch'
+            ],
+            null,
+            Icons.autorenew,
+            isMobile,
+          ),
+          const SizedBox(height: 24),
+          _buildProjectCard(
+            context,
+            'Failure Testing & Observability',
+            'Performed failure testing by manually terminating EC2 instances and simulating application crashes. '
+                'Verified that ALB health checks marked instances unhealthy and Auto Scaling automatically '
+                'replaced them. Configured CloudWatch metrics and logs to monitor instance health, '
+                'request count, and error rates.',
+            [
+              'CloudWatch',
+              'ALB Health Checks',
+              'Auto Scaling',
+              'Monitoring',
+              'Resilience'
+            ],
+            null,
+            Icons.monitor_heart,
+            isMobile,
+          ),
+          const SizedBox(height: 24),
+          _buildProjectCard(
+            context,
             'Portfolio Website - EC2 Deployment',
-            'Deployed a full-featured portfolio website on AWS EC2 with Nginx web server. Configured Elastic IP for static addressing and integrated DuckDNS for custom domain mapping.',
-            ['EC2', 'Nginx', 'Elastic IP', 'DuckDNS'],
+            'Deployed a full-featured portfolio website on AWS EC2 with Nginx web server. Configured Elastic IP for static addressing and integrated DuckDNS for custom domain mapping. Implemented security groups and firewall rules for production-ready deployment.',
+            ['EC2', 'Nginx', 'Elastic IP', 'DuckDNS', 'Security Groups'],
             'http://krishportfolio.duckdns.org/',
             Icons.web,
             isMobile,
@@ -594,9 +637,9 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
           const SizedBox(height: 24),
           _buildProjectCard(
             context,
-            'Static Site Hosting with CDN',
-            'Configured S3 bucket for static website hosting and integrated CloudFront CDN for global content delivery. Implemented video storage and streaming with optimized performance.',
-            ['S3', 'CloudFront', 'Static Hosting'],
+            'Static Site Hosting with Global CDN',
+            'Configured S3 bucket for static website hosting and integrated CloudFront CDN for global content delivery with edge caching. Implemented video storage and streaming with optimized performance and reduced latency across regions.',
+            ['S3', 'CloudFront', 'Static Hosting', 'Edge Caching'],
             'http://krishbucker.s3-website.eu-north-1.amazonaws.com/',
             Icons.storage,
             isMobile,
@@ -604,21 +647,11 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
           const SizedBox(height: 24),
           _buildProjectCard(
             context,
-            'Serverless API with Lambda',
-            'Built a serverless REST API using AWS Lambda, API Gateway, and DynamoDB. Implemented proper CORS configuration for cross-origin requests and optimized for scalability.',
-            ['Lambda', 'API Gateway', 'DynamoDB', 'CORS'],
+            'Serverless API with Lambda & DynamoDB',
+            'Built a serverless REST API using AWS Lambda, API Gateway, and DynamoDB. Implemented proper CORS configuration for cross-origin requests and optimized for scalability with pay-per-use pricing model. Designed event-driven architecture with automatic scaling.',
+            ['Lambda', 'API Gateway', 'DynamoDB', 'CORS', 'Event-Driven'],
             null,
             FontAwesomeIcons.bolt,
-            isMobile,
-          ),
-          const SizedBox(height: 24),
-          _buildProjectCard(
-            context,
-            'Cloud Infrastructure & Security',
-            'Designed and implemented VPC architecture with proper security groups and IAM policies. Configured Load Balancers and Auto Scaling for high availability and fault tolerance.',
-            ['VPC', 'IAM', 'Load Balancer', 'Auto Scaling'],
-            null,
-            Icons.security,
             isMobile,
           ),
           const SizedBox(height: 80),
@@ -631,11 +664,11 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
                 child: Transform.translate(
                   offset: Offset(0, 20 * (1 - value)),
                   child: Text(
-                    'Flutter Projects',
+                    'Additional Flutter Development Experience',
                     style: GoogleFonts.poppins(
-                      fontSize: isMobile ? 28 : 36,
+                      fontSize: isMobile ? 24 : 30,
                       fontWeight: FontWeight.bold,
-                      color: const Color(0xFF02569B),
+                      color: Colors.black54,
                     ),
                   ),
                 ),
@@ -646,8 +679,8 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
           _buildProjectCard(
             context,
             'AI-Based SaaS Applications',
-            'Developed AI-powered mobile applications for plant and fish identification using Large Language  models. Built for both iOS and Android platforms with real-time image recognition and detailed species information.',
-            ['Flutter', 'AI', 'Firebase','LLM Models', 'iOS', 'Android', 'SaaS'],
+            'Developed AI-powered mobile applications for plant and fish identification using Large Language models. Built for both iOS and Android platforms with real-time image recognition and detailed species information.',
+            ['Flutter', 'AI', 'Firebase', 'LLM Models', 'iOS', 'Android', 'SaaS'],
             null,
             Icons.psychology,
             isMobile,
@@ -874,7 +907,7 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
                 ),
                 const SizedBox(height: 24),
                 Text(
-                  'Open to AWS Cloud Engineering opportunities',
+                  'Open to Cloud Infrastructure Engineering opportunities',
                   style: GoogleFonts.poppins(
                     fontSize: 16,
                     color: Colors.white70,
@@ -882,7 +915,7 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
                 ),
                 const SizedBox(height: 32),
                 Text(
-                  ' 2025 Hari Krishna R. All rights reserved.',
+                  '© 2025 Hari Krishna R. All rights reserved.',
                   style: GoogleFonts.poppins(
                     fontSize: 14,
                     color: Colors.white60,

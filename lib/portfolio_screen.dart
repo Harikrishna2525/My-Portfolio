@@ -640,7 +640,7 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
             'Static Site Hosting with Global CDN',
             'Configured S3 bucket for static website hosting and integrated CloudFront CDN for global content delivery with edge caching. Implemented video storage and streaming with optimized performance and reduced latency across regions.',
             ['S3', 'CloudFront', 'Static Hosting', 'Edge Caching'],
-            'http://krish-buckets.s3-website.eu-north-1.amazonaws.com/',
+            'https://d3vc2jwe6irvyr.cloudfront.net/',
             Icons.storage,
             isMobile,
           ),

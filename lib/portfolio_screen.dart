@@ -47,6 +47,7 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
               _buildHeroSection(context),
               _buildSkillsCarousel(context),
               _buildExperienceSection(context),
+              _buildFocusSection(context),
               _buildProjectsSection(context),
               _buildFooter(context),
             ],
@@ -187,7 +188,7 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
                       const SizedBox(width: 12),
                       Flexible(
                         child: Text(
-                          'CLOUD INFRASTRUCTURE ENGINEER',
+                          'AWS Infrastructure & DevOps Engineer',
                           style: GoogleFonts.poppins(
                             fontSize: isMobile ? 14 : 24,
                             fontWeight: FontWeight.bold,
@@ -204,7 +205,7 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
           ),
           const SizedBox(height: 20),
           Text(
-            'Cloud Infrastructure • AWS • Auto-Healing • Serverless',
+            'AWS Infrastructure • CI/CD • Containers • High Availability • Auto-Healing • Serverless',
             textAlign: TextAlign.center,
             style: GoogleFonts.poppins(
               fontSize: isMobile ? 14 : 18,
@@ -237,7 +238,7 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
                       const SizedBox(width: 12),
                       Flexible(
                         child: Text(
-                          'Designing Resilient, Scalable & High-Availability Systems',
+                          'Designing Reliable & Scalable AWS Infrastructure', // ✅ CHANGED
                           textAlign: TextAlign.center,
                           style: GoogleFonts.poppins(
                             fontSize: isMobile ? 14 : 18,
@@ -299,7 +300,7 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
                 child: Transform.translate(
                   offset: Offset(0, 20 * (1 - value)),
                   child: Text(
-                    'Technologies & Tools',
+                    'Cloud Infrastructure & DevOps Stack', // ✅ CHANGED
                     style: GoogleFonts.poppins(
                       fontSize: isMobile ? 28 : 36,
                       fontWeight: FontWeight.bold,
@@ -584,14 +585,13 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
             },
           ),
           const SizedBox(height: 48),
+          // ✅ CHANGED: Auto-Healing project description
           _buildProjectCard(
             context,
             'Auto-Healing Web Infrastructure on AWS',
-            'Designed a highly available cloud infrastructure to eliminate single points of failure. '
-                'Built a custom VPC (10.0.0.0/16) with public subnets across multiple Availability Zones. '
-                'Application traffic is routed through an Application Load Balancer to EC2 instances '
-                'managed by an Auto Scaling Group. When an instance becomes unhealthy or is terminated, '
-                'the Auto Scaling Group automatically launches a replacement without manual intervention.',
+            'Designed a highly available AWS infrastructure using VPC, Application Load Balancer, and Auto Scaling.\n\n'
+                'Traffic is distributed across EC2 instances using ALB. If an instance becomes unhealthy or fails, the Auto Scaling Group automatically launches a replacement.\n\n'
+                'CloudWatch monitoring is used to observe instance health, request metrics, and system behavior.',
             [
               'VPC',
               'ALB',
@@ -604,15 +604,16 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
             null,
             Icons.autorenew,
             isMobile,
+            diagram: _buildAutoHealingDiagram(),
           ),
           const SizedBox(height: 24),
+          // ✅ CHANGED: Failure Testing project description
           _buildProjectCard(
             context,
             'Failure Testing & Observability',
-            'Performed failure testing by manually terminating EC2 instances and simulating application crashes. '
-                'Verified that ALB health checks marked instances unhealthy and Auto Scaling automatically '
-                'replaced them. Configured CloudWatch metrics and logs to monitor instance health, '
-                'request count, and error rates.',
+            'Performed controlled failure testing by terminating EC2 instances and stopping application containers.\n\n'
+                'Verified that ALB health checks marked instances unhealthy and Auto Scaling replaced them automatically.\n\n'
+                'CloudWatch metrics were used to observe recovery behavior.',
             [
               'CloudWatch',
               'ALB Health Checks',
@@ -624,37 +625,63 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
             Icons.monitor_heart,
             isMobile,
           ),
+          // const SizedBox(height: 24),
+          // // ✅ CHANGED: EC2 project - title, description, and NO live demo link
+          // _buildProjectCard(
+          //   context,
+          //   'Production Deployment of Portfolio on AWS EC2',
+          //   'Deployed the portfolio website on AWS EC2 using Nginx.\n\n'
+          //       'Configured Elastic IP and DuckDNS for domain mapping and secured access using AWS Security Groups.\n\n'
+          //       'Demonstrates basic production-style deployment and server management.',
+          //   ['EC2', 'Nginx', 'Elastic IP', 'DuckDNS', 'Security Groups'],
+          //   null, // ✅ REMOVED live demo link
+          //   Icons.web,
+          //   isMobile,
+          // ),
           const SizedBox(height: 24),
-          _buildProjectCard(
-            context,
-            'Portfolio Website - EC2 Deployment',
-            'Deployed a full-featured portfolio website on AWS EC2 with Nginx web server. Configured Elastic IP for static addressing and integrated DuckDNS for custom domain mapping. Implemented security groups and firewall rules for production-ready deployment.',
-            ['EC2', 'Nginx', 'Elastic IP', 'DuckDNS', 'Security Groups'],
-            'http://krishportfolio.duckdns.org/',
-            Icons.web,
-            isMobile,
-          ),
-          const SizedBox(height: 24),
+          // ✅ CHANGED: S3 + CloudFront description
           _buildProjectCard(
             context,
             'Static Site Hosting with Global CDN',
-            'Configured S3 bucket for static website hosting and integrated CloudFront CDN for global content delivery with edge caching. Implemented video storage and streaming with optimized performance and reduced latency across regions.',
+            'Implemented static website hosting using Amazon S3 and CloudFront CDN.\n\n'
+                'CloudFront caches content at edge locations to deliver files faster to global users and reduce latency.',
             ['S3', 'CloudFront', 'Static Hosting', 'Edge Caching'],
             'https://d3vc2jwe6irvyr.cloudfront.net/',
             Icons.storage,
             isMobile,
+            diagram: _buildS3CloudFrontDiagram(),
           ),
           const SizedBox(height: 24),
+          // ✅ CHANGED: Serverless API description
           _buildProjectCard(
             context,
             'Serverless API with Lambda & DynamoDB',
-            'Built a serverless REST API using AWS Lambda, API Gateway, and DynamoDB. Implemented proper CORS configuration for cross-origin requests and optimized for scalability with pay-per-use pricing model. Designed event-driven architecture with automatic scaling.',
+            'Built a serverless REST API using API Gateway, Lambda, and DynamoDB.\n\n'
+                'API Gateway routes requests to Lambda functions, which process logic and store data in DynamoDB.\n\n'
+                'This architecture scales automatically with usage.',
             ['Lambda', 'API Gateway', 'DynamoDB', 'CORS', 'Event-Driven'],
             null,
             FontAwesomeIcons.bolt,
             isMobile,
+            diagram: _buildServerlessDiagram(),
+          ),
+          const SizedBox(height: 24),
+          // ✅ NEW: CI/CD Pipeline section
+          _buildProjectCard(
+            context,
+            'CI/CD Pipeline',
+            'Automated application deployment using GitHub Actions and containerized workloads.\n\n'
+                'The pipeline builds Docker images, tags them with the commit SHA, pushes the images to GitHub Container Registry (GHCR), and updates the AWS infrastructure.\n\n'
+                'Pipeline Flow:\n'
+                'git push → GitHub Actions CI pipeline → Docker image build → Push image to GHCR → CloudFormation infrastructure update → EC2 instances pull and run the new container',
+            ['GitHub Actions', 'Docker', 'GHCR', 'CloudFormation', 'CI/CD', 'EC2'],
+            null,
+            Icons.rocket_launch,
+            isMobile,
+            diagram: _buildCiCdDiagram(),
           ),
           const SizedBox(height: 80),
+          // ✅ CHANGED: Flutter section title
           TweenAnimationBuilder<double>(
             tween: Tween(begin: 0.0, end: 1.0),
             duration: const Duration(milliseconds: 600),
@@ -664,7 +691,7 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
                 child: Transform.translate(
                   offset: Offset(0, 20 * (1 - value)),
                   child: Text(
-                    'Additional Flutter Development Experience',
+                    'Application Development Background (Flutter)', // ✅ CHANGED
                     style: GoogleFonts.poppins(
                       fontSize: isMobile ? 24 : 30,
                       fontWeight: FontWeight.bold,
@@ -676,6 +703,19 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
             },
           ),
           const SizedBox(height: 48),
+          // ✅ CHANGED: Single combined Flutter card (replaces 4 individual project cards)
+          _buildProjectCard(
+            context,
+            'Cross-Platform Mobile App Development',
+            'Before focusing on cloud infrastructure, I worked as a Flutter developer building cross-platform mobile applications for Android and iOS.\n\n'
+                'These projects involved integrating REST APIs, managing application state, and deploying production mobile apps. This experience helps me understand application behaviour and deployment requirements when designing cloud infrastructure.',
+            ['Flutter', 'REST APIs', 'Firebase', 'iOS', 'Android', 'Play Store'],
+            null,
+            Icons.phone_android,
+            isMobile,
+          ),
+          const SizedBox(height: 24),
+          // ✅ KEPT: AI-Based SaaS Apps (best two Flutter projects kept)
           _buildProjectCard(
             context,
             'AI-Based SaaS Applications',
@@ -685,42 +725,12 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
             Icons.psychology,
             isMobile,
           ),
-          const SizedBox(height: 24),
-          _buildProjectCard(
-            context,
-            'ERP & Garments Management System',
-            'Comprehensive ERP solution for garments industry with inventory management, order tracking, production planning, and financial reporting. Cross-platform application for iOS and Android.',
-            ['Flutter', 'ERP', 'Inventory', 'iOS', 'Android', 'Database'],
-            null,
-            Icons.business_center,
-            isMobile,
-          ),
-          const SizedBox(height: 24),
-          _buildProjectCard(
-            context,
-            'QR Code Scanning Application',
-            'High-performance QR code scanning application with real-time data processing and validation. Supports multiple QR code formats and includes offline capability for both iOS and Android platforms.',
-            ['Flutter', 'QR Scanner', 'Camera API', 'iOS', 'Android'],
-            null,
-            Icons.qr_code_scanner,
-            isMobile,
-          ),
-          const SizedBox(height: 24),
-          _buildProjectCard(
-            context,
-            'Published Apps on Play Store',
-            'Successfully published and maintained 2+ Flutter applications on Google Play Store through manual deployment process. Managed app updates, user feedback, and performance optimization.',
-            ['Flutter', 'Play Store', 'Deployment', 'App Management'],
-            null,
-            FontAwesomeIcons.googlePlay,
-            isMobile,
-          ),
         ],
       ),
     );
   }
 
-  Widget _buildProjectCard(BuildContext context, String title, String description, List<String> technologies, String? link, IconData icon, bool isMobile) {
+  Widget _buildProjectCard(BuildContext context, String title, String description, List<String> technologies, String? link, IconData icon, bool isMobile, {Widget? diagram}) {
     return TweenAnimationBuilder<double>(
       tween: Tween(begin: 0.0, end: 1.0),
       duration: const Duration(milliseconds: 800),
@@ -782,6 +792,11 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
                         height: 1.6,
                       ),
                     ),
+                    if (diagram != null) ...[
+                      const SizedBox(height: 24),
+                      diagram,
+                      const SizedBox(height: 8),
+                    ],
                     const SizedBox(height: 16),
                     Wrap(
                       spacing: 8,
@@ -874,7 +889,438 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
     );
   }
 
+  Widget _buildAutoHealingDiagram() {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: const Color(0xFFF0F7FF),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: const Color(0xFF1E88E5).withOpacity(0.25), width: 1.5),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Architecture Overview',
+            style: GoogleFonts.poppins(
+              fontSize: 14,
+              fontWeight: FontWeight.w700,
+              color: const Color(0xFF1E88E5),
+              letterSpacing: 0.5,
+            ),
+          ),
+          const SizedBox(height: 16),
+          Center(
+            child: Column(
+              children: [
+                _diagBox('User / Browser', Icons.person_outline, const Color(0xFF5C6BC0)),
+                _diagArrow(),
+                _diagBox('Internet Gateway (IGW)', Icons.router_outlined, const Color(0xFFEF6C00)),
+                _diagArrow(),
+                _diagBox('Application Load Balancer', Icons.balance, const Color(0xFF1E88E5)),
+                _diagArrowText('Health Checks'),
+                Container(
+                  padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 12),
+                  decoration: BoxDecoration(
+                    color: Colors.white,
+                    borderRadius: BorderRadius.circular(10),
+                    border: Border.all(color: const Color(0xFF66BB6A).withOpacity(0.6), width: 1.5),
+                  ),
+                  child: Column(
+                    children: [
+                      Text(
+                        'Auto Scaling Group',
+                        style: GoogleFonts.poppins(
+                          fontSize: 13,
+                          fontWeight: FontWeight.w700,
+                          color: const Color(0xFF2E7D32),
+                        ),
+                      ),
+                      const SizedBox(height: 10),
+                      Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          _diagSmallBox('EC2\nInstance', Icons.cloud, const Color(0xFF1E88E5)),
+                          const SizedBox(width: 12),
+                          _diagSmallBox('EC2\nInstance', Icons.cloud, const Color(0xFF1E88E5)),
+                          const SizedBox(width: 12),
+                          _diagSmallBox('EC2\n(Auto)', Icons.autorenew, const Color(0xFF43A047)),
+                        ],
+                      ),
+                    ],
+                  ),
+                ),
+                _diagArrow(),
+                _diagBox('CloudWatch (Monitoring)', Icons.monitor_heart_outlined, const Color(0xFFFF6F00)),
+              ],
+            ),
+          ),
+          const SizedBox(height: 12),
+          Row(
+            children: [
+              const Icon(Icons.info_outline, size: 14, color: Color(0xFF1E88E5)),
+              const SizedBox(width: 6),
+              Flexible(
+                child: Text(
+                  'If an EC2 instance fails, Auto Scaling launches a replacement automatically.',
+                  style: GoogleFonts.poppins(fontSize: 12, color: Colors.black45, fontStyle: FontStyle.italic),
+                ),
+              ),
+            ],
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildCiCdDiagram() {
+    final steps = [
+      {'label': 'Developer  git push', 'icon': Icons.code, 'color': const Color(0xFF5C6BC0)},
+      {'label': 'GitHub Repository', 'icon': FontAwesomeIcons.github, 'color': const Color(0xFF181717)},
+      {'label': 'GitHub Actions (CI Trigger)', 'icon': Icons.play_circle_outline, 'color': const Color(0xFF2196F3)},
+      {'label': 'Docker Image Build', 'icon': Icons.build_outlined, 'color': const Color(0xFF0288D1)},
+      {'label': 'Push to GHCR', 'icon': Icons.upload_outlined, 'color': const Color(0xFF6A1B9A)},
+      {'label': 'CloudFormation Update', 'icon': Icons.layers_outlined, 'color': const Color(0xFFFF9900)},
+      {'label': 'EC2 Pulls & Runs Container', 'icon': Icons.cloud_done_outlined, 'color': const Color(0xFF2E7D32)},
+    ];
+
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: const Color(0xFFF0F7FF),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: const Color(0xFF1E88E5).withOpacity(0.25), width: 1.5),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Pipeline Flow',
+            style: GoogleFonts.poppins(
+              fontSize: 14,
+              fontWeight: FontWeight.w700,
+              color: const Color(0xFF1E88E5),
+              letterSpacing: 0.5,
+            ),
+          ),
+          const SizedBox(height: 16),
+          Center(
+            child: Column(
+              children: [
+                for (int i = 0; i < steps.length; i++) ...[
+                  _diagBox(
+                    steps[i]['label'] as String,
+                    steps[i]['icon'] as IconData,
+                    steps[i]['color'] as Color,
+                  ),
+                  if (i < steps.length - 1) _diagArrow(),
+                ],
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _diagBox(String label, IconData icon, Color color) {
+    return Container(
+      constraints: const BoxConstraints(minWidth: 240),
+      padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
+      decoration: BoxDecoration(
+        color: Colors.white,
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: color.withOpacity(0.4), width: 1.5),
+        boxShadow: [
+          BoxShadow(color: color.withOpacity(0.08), blurRadius: 6, offset: const Offset(0, 3)),
+        ],
+      ),
+      child: Row(
+        mainAxisSize: MainAxisSize.min,
+        children: [
+          Icon(icon, size: 18, color: color),
+          const SizedBox(width: 10),
+          Flexible(
+            child: Text(
+              label,
+              style: GoogleFonts.poppins(fontSize: 13, fontWeight: FontWeight.w600, color: Colors.black87),
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _diagSmallBox(String label, IconData icon, Color color) {
+    return Container(
+      padding: const EdgeInsets.symmetric(horizontal: 12, vertical: 8),
+      decoration: BoxDecoration(
+        color: color.withOpacity(0.08),
+        borderRadius: BorderRadius.circular(8),
+        border: Border.all(color: color.withOpacity(0.4), width: 1.2),
+      ),
+      child: Column(
+        children: [
+          Icon(icon, size: 20, color: color),
+          const SizedBox(height: 4),
+          Text(
+            label,
+            textAlign: TextAlign.center,
+            style: GoogleFonts.poppins(fontSize: 11, fontWeight: FontWeight.w600, color: Colors.black87),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _diagArrow() {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 4),
+      child: Icon(Icons.keyboard_arrow_down_rounded, color: Colors.black26, size: 28),
+    );
+  }
+
+  Widget _diagArrowText(String label) {
+    return Padding(
+      padding: const EdgeInsets.symmetric(vertical: 2),
+      child: Column(
+        children: [
+          Icon(Icons.keyboard_arrow_down_rounded, color: Colors.black26, size: 28),
+          Container(
+            padding: const EdgeInsets.symmetric(horizontal: 10, vertical: 3),
+            decoration: BoxDecoration(
+              color: const Color(0xFFE3F2FD),
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Text(
+              label,
+              style: GoogleFonts.poppins(fontSize: 11, color: const Color(0xFF1E88E5), fontWeight: FontWeight.w500),
+            ),
+          ),
+          const SizedBox(height: 4),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildS3CloudFrontDiagram() {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: const Color(0xFFF0F7FF),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: const Color(0xFF1E88E5).withOpacity(0.25), width: 1.5),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Architecture Overview',
+            style: GoogleFonts.poppins(
+              fontSize: 14,
+              fontWeight: FontWeight.w700,
+              color: const Color(0xFF1E88E5),
+              letterSpacing: 0.5,
+            ),
+          ),
+          const SizedBox(height: 16),
+          Center(
+            child: Column(
+              children: [
+                _diagBox('User Browser', Icons.web_outlined, const Color(0xFF5C6BC0)),
+                _diagArrow(),
+                _diagBox('CloudFront CDN\n(Edge Locations)', Icons.cloud_sync_outlined, const Color(0xFFFF9900)),
+                _diagArrow(),
+                _diagBox('S3 Bucket\n(Static Website)', Icons.storage_outlined, const Color(0xFF569A31)),
+                _diagArrow(),
+                _diagBox('Images / Videos / Assets', Icons.perm_media_outlined, const Color(0xFF26A69A)),
+              ],
+            ),
+          ),
+          const SizedBox(height: 14),
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: const Color(0xFFE3F2FD),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Icon(Icons.info_outline, size: 14, color: Color(0xFF1E88E5)),
+                const SizedBox(width: 8),
+                Flexible(
+                  child: Text(
+                    'CloudFront caches static content at edge locations and delivers files from the nearest edge node, reducing latency and improving global performance.',
+                    style: GoogleFonts.poppins(fontSize: 12, color: Colors.black54, height: 1.5),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildServerlessDiagram() {
+    return Container(
+      width: double.infinity,
+      padding: const EdgeInsets.all(20),
+      decoration: BoxDecoration(
+        color: const Color(0xFFF0F7FF),
+        borderRadius: BorderRadius.circular(12),
+        border: Border.all(color: const Color(0xFF1E88E5).withOpacity(0.25), width: 1.5),
+      ),
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Text(
+            'Architecture Overview',
+            style: GoogleFonts.poppins(
+              fontSize: 14,
+              fontWeight: FontWeight.w700,
+              color: const Color(0xFF1E88E5),
+              letterSpacing: 0.5,
+            ),
+          ),
+          const SizedBox(height: 16),
+          Center(
+            child: Column(
+              children: [
+                _diagBox('Client / Frontend', Icons.phone_android_outlined, const Color(0xFF5C6BC0)),
+                _diagArrowText('HTTP Request'),
+                _diagBox('API Gateway', Icons.api_outlined, const Color(0xFF1E88E5)),
+                _diagArrow(),
+                _diagBox('Lambda Function\n(Business Logic)', FontAwesomeIcons.bolt, const Color(0xFFFF9900)),
+                _diagArrow(),
+                _diagBox('DynamoDB\n(Data Storage)', Icons.storage_outlined, const Color(0xFF2053B4)),
+              ],
+            ),
+          ),
+          const SizedBox(height: 14),
+          Container(
+            padding: const EdgeInsets.all(12),
+            decoration: BoxDecoration(
+              color: const Color(0xFFE3F2FD),
+              borderRadius: BorderRadius.circular(8),
+            ),
+            child: Row(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                const Icon(Icons.info_outline, size: 14, color: Color(0xFF1E88E5)),
+                const SizedBox(width: 8),
+                Flexible(
+                  child: Text(
+                    'API Gateway receives HTTP requests and routes them to Lambda functions which execute application logic. DynamoDB stores application data and scales automatically based on request load.',
+                    style: GoogleFonts.poppins(fontSize: 12, color: Colors.black54, height: 1.5),
+                  ),
+                ),
+              ],
+            ),
+          ),
+        ],
+      ),
+    );
+  }
+
+  Widget _buildFocusSection(BuildContext context) {
+    final isMobile = MediaQuery.of(context).size.width < 768;
+    final focusItems = [
+      {'label': 'High Availability Architecture', 'icon': Icons.architecture},
+      {'label': 'Auto-Healing Systems', 'icon': Icons.autorenew},
+      {'label': 'Infrastructure as Code', 'icon': Icons.layers_outlined},
+      {'label': 'CI/CD Automation', 'icon': Icons.rocket_launch_outlined},
+      {'label': 'Containerisation', 'icon': FontAwesomeIcons.docker},
+      {'label': 'Serverless Architectures', 'icon': FontAwesomeIcons.bolt},
+      {'label': 'Observability & Monitoring', 'icon': Icons.monitor_heart_outlined},
+
+    ];
+
+    return Container(
+      width: double.infinity,
+      padding: EdgeInsets.symmetric(
+        horizontal: isMobile ? 24 : 80,
+        vertical: 60,
+      ),
+      color: const Color(0xFF0D47A1),
+      child: Column(
+        children: [
+          TweenAnimationBuilder<double>(
+            tween: Tween(begin: 0.0, end: 1.0),
+            duration: const Duration(milliseconds: 600),
+            builder: (context, value, child) {
+              return Opacity(
+                opacity: value,
+                child: Transform.translate(
+                  offset: Offset(0, 20 * (1 - value)),
+                  child: Text(
+                    'Infrastructure Design Focus',
+                    style: GoogleFonts.poppins(
+                      fontSize: isMobile ? 28 : 36,
+                      fontWeight: FontWeight.bold,
+                      color: Colors.white,
+                    ),
+                  ),
+                ),
+              );
+            },
+          ),
+          const SizedBox(height: 40),
+          Wrap(
+            spacing: 16,
+            runSpacing: 16,
+            alignment: WrapAlignment.center,
+            children: focusItems.map((item) {
+              return TweenAnimationBuilder<double>(
+                tween: Tween(begin: 0.0, end: 1.0),
+                duration: const Duration(milliseconds: 600),
+                builder: (context, value, child) {
+                  return Opacity(
+                    opacity: value,
+                    child: Container(
+                      padding: const EdgeInsets.symmetric(horizontal: 20, vertical: 14),
+                      decoration: BoxDecoration(
+                        color: Colors.white.withOpacity(0.12),
+                        borderRadius: BorderRadius.circular(12),
+                        border: Border.all(color: Colors.white.withOpacity(0.25), width: 1.5),
+                      ),
+                      child: Row(
+                        mainAxisSize: MainAxisSize.min,
+                        children: [
+                          Icon(
+                            item['icon'] as IconData,
+                            color: const Color(0xFFFFBD00),
+                            size: 20,
+                          ),
+                          const SizedBox(width: 10),
+                          Text(
+                            item['label'] as String,
+                            style: GoogleFonts.poppins(
+                              fontSize: 15,
+                              fontWeight: FontWeight.w600,
+                              color: Colors.white,
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                  );
+                },
+              );
+            }).toList(),
+          ),
+        ],
+      ),
+    );
+  }
+
   Widget _buildFooter(BuildContext context) {
+    final isMobile = MediaQuery.of(context).size.width < 768;
+
     return TweenAnimationBuilder<double>(
       tween: Tween(begin: 0.0, end: 1.0),
       duration: const Duration(milliseconds: 800),
@@ -883,7 +1329,10 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
           opacity: value,
           child: Container(
             width: double.infinity,
-            padding: const EdgeInsets.symmetric(vertical: 40),
+            padding: EdgeInsets.symmetric(
+              horizontal: isMobile ? 24 : 80,
+              vertical: 48,
+            ),
             decoration: BoxDecoration(
               gradient: LinearGradient(
                 begin: Alignment.topLeft,
@@ -905,15 +1354,48 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
                     color: Colors.white,
                   ),
                 ),
-                const SizedBox(height: 24),
+                const SizedBox(height: 12),
                 Text(
                   'Open to Cloud Infrastructure Engineering opportunities',
+                  textAlign: TextAlign.center,
                   style: GoogleFonts.poppins(
                     fontSize: 16,
                     color: Colors.white70,
                   ),
                 ),
-                const SizedBox(height: 32),
+                const SizedBox(height: 36),
+                Wrap(
+                  spacing: 16,
+                  runSpacing: 16,
+                  alignment: WrapAlignment.center,
+                  children: [
+                    _buildFooterLink(
+                      icon: FontAwesomeIcons.linkedin,
+                      label: 'LinkedIn',
+                      color: const Color(0xFF0A66C2),
+                      url: 'https://www.linkedin.com/in/hari-krish-13300b27a/',
+                    ),
+                    _buildFooterLink(
+                      icon: FontAwesomeIcons.github,
+                      label: 'GitHub',
+                      color: Colors.white,
+                      url: 'https://github.com/Harikrishna2525',
+                    ),
+                    // _buildFooterLink(
+                    //   icon: Icons.email_outlined,
+                    //   label: 'Email',
+                    //   color: const Color(0xFFFFBD00),
+                    //   url: 'mailto:harikrish58027@gmail.com',
+                    // ),
+                    _buildFooterLink(
+                      icon: Icons.description_outlined,
+                      label: 'Resume',
+                      color: const Color(0xFF66BB6A),
+                      url: 'https://drive.google.com/file/d/1zqnUmifFaay8s_Di1eKNnS5hRUWiw9r-/view?usp=drive_link',
+                    ),
+                  ],
+                ),
+                const SizedBox(height: 36),
                 Text(
                   '© 2025 Hari Krishna R. All rights reserved.',
                   style: GoogleFonts.poppins(
@@ -926,6 +1408,57 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
           ),
         );
       },
+    );
+  }
+
+  Widget _buildFooterLink({
+    required IconData icon,
+    required String label,
+    required Color color,
+    required String url,
+  }) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: InkWell(
+          onTap: () async {
+            Uri uri;
+
+            if (url.startsWith('mailto:')) {
+              uri = Uri(
+                scheme: 'mailto',
+                path: 'harikrish58027@gmail.com',
+              );
+            } else {
+              uri = Uri.parse(url);
+            }
+
+            await launchUrl(uri, mode: LaunchMode.externalApplication);
+          },
+        borderRadius: BorderRadius.circular(12),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 24, vertical: 14),
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.12),
+            borderRadius: BorderRadius.circular(12),
+            border: Border.all(color: color.withOpacity(0.5), width: 1.5),
+          ),
+          child: Row(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Icon(icon, color: color, size: 20),
+              const SizedBox(width: 10),
+              Text(
+                label,
+                style: GoogleFonts.poppins(
+                  fontSize: 15,
+                  fontWeight: FontWeight.w600,
+                  color: Colors.white,
+                ),
+              ),
+            ],
+          ),
+        ),
+      ),
     );
   }
 }

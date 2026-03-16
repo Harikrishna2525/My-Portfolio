@@ -480,7 +480,6 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
               opacity: value,
               child: AnimatedContainer(
                 duration: const Duration(milliseconds: 300),
-                width: isMobile ? double.infinity : 280,
                 padding: const EdgeInsets.all(24),
                 decoration: BoxDecoration(
                   color: Colors.white,
@@ -938,13 +937,13 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
                         ),
                       ),
                       const SizedBox(height: 10),
-                      Row(
-                        mainAxisSize: MainAxisSize.min,
+                      Wrap(
+                        spacing: 12,
+                        runSpacing: 8,
+                        alignment: WrapAlignment.center,
                         children: [
                           _diagSmallBox('EC2\nInstance', Icons.cloud, const Color(0xFF1E88E5)),
-                          const SizedBox(width: 12),
                           _diagSmallBox('EC2\nInstance', Icons.cloud, const Color(0xFF1E88E5)),
-                          const SizedBox(width: 12),
                           _diagSmallBox('EC2\n(Auto)', Icons.autorenew, const Color(0xFF43A047)),
                         ],
                       ),

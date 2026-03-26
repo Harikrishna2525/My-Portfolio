@@ -15,7 +15,7 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      title: 'Hari Krishna R - AWS Cloud Engineer',
+      title: 'Hari Krishna R - AWS DevOps Engineer',
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primaryColor: const Color(0xFF1E88E5),

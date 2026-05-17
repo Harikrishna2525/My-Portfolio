@@ -645,7 +645,7 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
             'Implemented static website hosting using Amazon S3 and CloudFront CDN.\n\n'
                 'CloudFront caches content at edge locations to deliver files faster to global users and reduce latency.',
             ['S3', 'CloudFront', 'Static Hosting', 'Edge Caching'],
-            'https://d3vc2jwe6irvyr.cloudfront.net/',
+            'https://d1qvxk6xrossrj.cloudfront.net/',
             Icons.storage,
             isMobile,
             diagram: _buildS3CloudFrontDiagram(),

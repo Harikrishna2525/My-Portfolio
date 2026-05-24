@@ -15,6 +15,12 @@ class PortfolioPage extends StatefulWidget {
 class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProviderStateMixin {
   late AnimationController _controller;
   late Animation<double> _fadeAnimation;
+  late ScrollController _scrollController;
+  final GlobalKey _skillsKey = GlobalKey();
+  final GlobalKey _experienceKey = GlobalKey();
+  final GlobalKey _focusKey = GlobalKey();
+  final GlobalKey _projectsKey = GlobalKey();
+  final GlobalKey _footerKey = GlobalKey();
 
   @override
   void initState() {
@@ -26,13 +32,51 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
     _fadeAnimation = Tween<double>(begin: 0.0, end: 1.0).animate(
       CurvedAnimation(parent: _controller, curve: Curves.easeInOut),
     );
+    _scrollController = ScrollController();
     _controller.forward();
   }
 
   @override
   void dispose() {
     _controller.dispose();
+    _scrollController.dispose();
     super.dispose();
+  }
+
+  void _scrollToSection(GlobalKey key) {
+    final RenderBox renderBox = key.currentContext?.findRenderObject() as RenderBox;
+    final position = renderBox.localToGlobal(Offset.zero);
+    _scrollController.animateTo(
+      position.dy - 80,
+      duration: const Duration(milliseconds: 500),
+      curve: Curves.easeInOut,
+    );
+  }
+
+  Widget _buildNavButton(String label, VoidCallback onTap) {
+    return MouseRegion(
+      cursor: SystemMouseCursors.click,
+      child: InkWell(
+        onTap: onTap,
+        borderRadius: BorderRadius.circular(20),
+        child: Container(
+          padding: const EdgeInsets.symmetric(horizontal: 16, vertical: 8),
+          decoration: BoxDecoration(
+            color: Colors.white.withOpacity(0.15),
+            borderRadius: BorderRadius.circular(20),
+            border: Border.all(color: Colors.white.withOpacity(0.3), width: 1),
+          ),
+          child: Text(
+            label,
+            style: GoogleFonts.poppins(
+              fontSize: 13,
+              fontWeight: FontWeight.w500,
+              color: Colors.white,
+            ),
+          ),
+        ),
+      ),
+    );
   }
 
   @override
@@ -40,16 +84,17 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
     return Scaffold(
       backgroundColor: Colors.white,
       body: SingleChildScrollView(
+        controller: _scrollController,
         child: FadeTransition(
           opacity: _fadeAnimation,
           child: Column(
             children: [
               _buildHeroSection(context),
-              _buildSkillsCarousel(context),
-              _buildExperienceSection(context),
-              _buildFocusSection(context),
-              _buildProjectsSection(context),
-              _buildFooter(context),
+              Container(key: _skillsKey, child: _buildSkillsCarousel(context)),
+              Container(key: _experienceKey, child: _buildExperienceSection(context)),
+              Container(key: _focusKey, child: _buildFocusSection(context)),
+              Container(key: _projectsKey, child: _buildProjectsSection(context)),
+              Container(key: _footerKey, child: _buildFooter(context)),
             ],
           ),
         ),
@@ -132,6 +177,31 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
               );
             },
           ),
+          const SizedBox(height: 24),
+          // TweenAnimationBuilder<double>(
+          //   tween: Tween(begin: 0.0, end: 1.0),
+          //   duration: const Duration(milliseconds: 800),
+          //   builder: (context, value, child) {
+          //     return Opacity(
+          //       opacity: value,
+          //       child: Transform.translate(
+          //         offset: Offset(0, 10 * (1 - value)),
+          //         child: Wrap(
+          //           spacing: 12,
+          //           runSpacing: 8,
+          //           alignment: WrapAlignment.center,
+          //           children: [
+          //             _buildNavButton('Skills', () => _scrollToSection(_skillsKey)),
+          //             _buildNavButton('Experience', () => _scrollToSection(_experienceKey)),
+          //             _buildNavButton('Focus', () => _scrollToSection(_focusKey)),
+          //             _buildNavButton('Projects', () => _scrollToSection(_projectsKey)),
+          //             _buildNavButton('Contact', () => _scrollToSection(_footerKey)),
+          //           ],
+          //         ),
+          //       ),
+          //     );
+          //   },
+          // ),
           const SizedBox(height: 32),
           TweenAnimationBuilder<double>(
             tween: Tween(begin: 0.0, end: 1.0),
@@ -268,7 +338,7 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
       {'name': 'API Gateway', 'icon': Icons.api, 'color': const Color(0xFF1E88E5)},
       {'name': 'DynamoDB', 'icon': Icons.storage, 'color': const Color(0xFF2053B4)},
       {'name': 'CloudFront (CDN)', 'icon': Icons.cloud_sync, 'color': const Color(0xFFFF9900)},
-      {'name': 'CloudFormation', 'icon': Icons.layers, 'color': const Color(0xFFFF9900)},
+      {'name': 'Terraform', 'icon': null, 'asset': 'terraform.png'},
       {'name': 'Load Balancer', 'icon': Icons.balance, 'color': const Color(0xFF42A5F5)},
       {'name': 'Auto Scaling', 'icon': Icons.trending_up, 'color': const Color(0xFF66BB6A)},
       {'name': 'Target Group', 'icon': Icons.group_work, 'color': const Color(0xFFAB47BC)},
@@ -431,7 +501,7 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
               _buildExperienceCard(
                 'Cloud Infrastructure',
                 'Production Systems',
-                'VPC, ALB, Auto Scaling, EC2, IAM, CloudWatch, CloudFormation (IaC)',
+                'VPC, ALB, Auto Scaling, EC2, IAM, CloudWatch, Terraform (IaC)',
                 Icons.cloud_queue,
                 const Color(0xFFFF9900),
                 isMobile,
@@ -672,8 +742,8 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
             'Automated application deployment using GitHub Actions and containerized workloads.\n\n'
                 'The pipeline builds Docker images, tags them with the commit SHA, pushes the images to GitHub Container Registry (GHCR), and updates the AWS infrastructure.\n\n'
                 'Pipeline Flow:\n'
-                'git push → GitHub Actions CI pipeline → Docker image build → Push image to GHCR → CloudFormation infrastructure update → EC2 instances pull and run the new container',
-            ['GitHub Actions', 'Docker', 'GHCR', 'CloudFormation', 'CI/CD', 'EC2'],
+                'git push → GitHub Actions CI pipeline → Docker image build → Push image to GHCR → Terraform infrastructure update → EC2 instances pull and run the new container',
+            ['GitHub Actions', 'Docker', 'GHCR', 'Terraform', 'CI/CD', 'EC2'],
             null,
             Icons.rocket_launch,
             isMobile,
@@ -980,7 +1050,7 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
       {'label': 'GitHub Actions (CI Trigger)', 'icon': Icons.play_circle_outline, 'color': const Color(0xFF2196F3)},
       {'label': 'Docker Image Build', 'icon': Icons.build_outlined, 'color': const Color(0xFF0288D1)},
       {'label': 'Push to GHCR', 'icon': Icons.upload_outlined, 'color': const Color(0xFF6A1B9A)},
-      {'label': 'CloudFormation Update', 'icon': Icons.layers_outlined, 'color': const Color(0xFFFF9900)},
+      {'label': 'Terraform Update', 'icon': Icons.layers_outlined, 'color': const Color(0xFF7B42BC)},
       {'label': 'EC2 Pulls & Runs Container', 'icon': Icons.cloud_done_outlined, 'color': const Color(0xFF2E7D32)},
     ];
 

@@ -250,7 +250,7 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
                   child: Row(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      const Icon(
+                      const FaIcon(
                         FontAwesomeIcons.aws,
                         color: Colors.white,
                         size: 28,
@@ -424,11 +424,17 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 if (skill['icon'] != null)
-                                  Icon(
-                                    skill['icon'] as IconData,
-                                    size: 64,
-                                    color: skill['color'] as Color?,
-                                  )
+                                  skill['icon'] is FaIconData
+                                      ? FaIcon(
+                                          skill['icon'] as FaIconData,
+                                          size: 64,
+                                          color: skill['color'] as Color?,
+                                        )
+                                      : Icon(
+                                          skill['icon'] as IconData,
+                                          size: 64,
+                                          color: skill['color'] as Color?,
+                                        )
                                 else if (skill['asset'] != null)
                                   Image.asset(
                                     skill['asset'] as String,
@@ -537,7 +543,7 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
     );
   }
 
-  Widget _buildExperienceCard(String title, String level, String description, IconData icon, Color color, bool isMobile) {
+  Widget _buildExperienceCard(String title, String level, String description, dynamic icon, Color color, bool isMobile) {
     return MouseRegion(
       cursor: SystemMouseCursors.click,
       child: TweenAnimationBuilder<double>(
@@ -571,7 +577,7 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
                       builder: (context, iconValue, child) {
                         return Transform.scale(
                           scale: iconValue,
-                          child: Icon(icon, size: 52, color: color),
+                          child: icon is FaIconData ? FaIcon(icon, size: 52, color: color) : Icon(icon, size: 52, color: color),
                         );
                       },
                     ),
@@ -799,7 +805,7 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
     );
   }
 
-  Widget _buildProjectCard(BuildContext context, String title, String description, List<String> technologies, String? link, IconData icon, bool isMobile, {Widget? diagram}) {
+  Widget _buildProjectCard(BuildContext context, String title, String description, List<String> technologies, String? link, dynamic icon, bool isMobile, {Widget? diagram}) {
     return TweenAnimationBuilder<double>(
       tween: Tween(begin: 0.0, end: 1.0),
       duration: const Duration(milliseconds: 800),
@@ -837,7 +843,7 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
                             color: const Color(0xFF1E88E5).withOpacity(0.1),
                             borderRadius: BorderRadius.circular(12),
                           ),
-                          child: Icon(icon, color: const Color(0xFF1E88E5), size: 28),
+                          child: icon is FaIconData ? FaIcon(icon, color: const Color(0xFF1E88E5), size: 28) : Icon(icon, color: const Color(0xFF1E88E5), size: 28),
                         ),
                         const SizedBox(width: 16),
                         Expanded(
@@ -1081,7 +1087,7 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
                 for (int i = 0; i < steps.length; i++) ...[
                   _diagBox(
                     steps[i]['label'] as String,
-                    steps[i]['icon'] as IconData,
+                    steps[i]['icon'],
                     steps[i]['color'] as Color,
                   ),
                   if (i < steps.length - 1) _diagArrow(),
@@ -1094,7 +1100,7 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
     );
   }
 
-  Widget _diagBox(String label, IconData icon, Color color) {
+  Widget _diagBox(String label, dynamic icon, Color color) {
     return Container(
       constraints: const BoxConstraints(minWidth: 240),
       padding: const EdgeInsets.symmetric(horizontal: 18, vertical: 10),
@@ -1109,7 +1115,7 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
       child: Row(
         mainAxisSize: MainAxisSize.min,
         children: [
-          Icon(icon, size: 18, color: color),
+          icon is FaIconData ? FaIcon(icon, size: 18, color: color) : Icon(icon, size: 18, color: color),
           const SizedBox(width: 10),
           Flexible(
             child: Text(
@@ -1360,11 +1366,17 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
                       child: Row(
                         mainAxisSize: MainAxisSize.min,
                         children: [
-                          Icon(
-                            item['icon'] as IconData,
-                            color: const Color(0xFFFFBD00),
-                            size: 20,
-                          ),
+                          item['icon'] is FaIconData
+                              ? FaIcon(
+                                  item['icon'] as FaIconData,
+                                  color: const Color(0xFFFFBD00),
+                                  size: 20,
+                                )
+                              : Icon(
+                                  item['icon'] as IconData,
+                                  color: const Color(0xFFFFBD00),
+                                  size: 20,
+                                ),
                           const SizedBox(width: 10),
                           Text(
                             item['label'] as String,
@@ -1481,7 +1493,7 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
   }
 
   Widget _buildFooterLink({
-    required IconData icon,
+    required dynamic icon,
     required String label,
     required Color color,
     required String url,
@@ -1514,7 +1526,7 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
           child: Row(
             mainAxisSize: MainAxisSize.min,
             children: [
-              Icon(icon, color: color, size: 20),
+              icon is FaIconData ? FaIcon(icon, color: color, size: 20) : Icon(icon, color: color, size: 20),
               const SizedBox(width: 10),
               Text(
                 label,

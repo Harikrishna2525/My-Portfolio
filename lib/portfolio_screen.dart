@@ -338,7 +338,7 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
       {'name': 'API Gateway', 'icon': Icons.api, 'color': const Color(0xFF1E88E5)},
       {'name': 'DynamoDB', 'icon': Icons.storage, 'color': const Color(0xFF2053B4)},
       {'name': 'CloudFront (CDN)', 'icon': Icons.cloud_sync, 'color': const Color(0xFFFF9900)},
-      {'name': 'Terraform', 'icon': null, 'asset': 'terraform.png'},
+      {'name': 'Terraform', 'icon': null, 'asset': 'assets/terraform.png'},
       {'name': 'Load Balancer', 'icon': Icons.balance, 'color': const Color(0xFF42A5F5)},
       {'name': 'Auto Scaling', 'icon': Icons.trending_up, 'color': const Color(0xFF66BB6A)},
       {'name': 'Target Group', 'icon': Icons.group_work, 'color': const Color(0xFFAB47BC)},

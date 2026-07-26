@@ -355,6 +355,7 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
       {'name': 'Git', 'icon': FontAwesomeIcons.git, 'color': const Color(0xFFF05032)},
       {'name': 'GitHub', 'icon': FontAwesomeIcons.github, 'color': const Color(0xFF181717)},
       {'name': 'Docker', 'icon': null, 'asset': 'assets/docker.png'},
+      {'name': 'Kubernetes', 'icon': null, 'asset': 'assets/k8s.png'},
     ];
 
     return Container(

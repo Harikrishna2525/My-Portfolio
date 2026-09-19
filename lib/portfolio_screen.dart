@@ -1473,7 +1473,7 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
                       icon: Icons.description_outlined,
                       label: 'Resume',
                       color: const Color(0xFF66BB6A),
-                      url: 'https://drive.google.com/file/d/1zqnUmifFaay8s_Di1eKNnS5hRUWiw9r-/view?usp=drive_link',
+                      url: 'https://drive.google.com/file/d/10GXrXNTd8B31buJ1syll3Mud2Ri-3Qkx/view?usp=drive_link',
                     ),
                   ],
                 ),

@@ -1469,6 +1469,7 @@ class _PortfolioPageState extends State<PortfolioPage> with SingleTickerProvider
                     //   color: const Color(0xFFFFBD00),
                     //   url: 'mailto:harikrish58027@gmail.com',
                     // ),
+
                     _buildFooterLink(
                       icon: Icons.description_outlined,
                       label: 'Resume',
